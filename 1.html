@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Интернет-магазин</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div id="menu"></div>
+<div id="menu" class="menu"></div>
 <script src="MenuItem.js"></script>
 <script src="Menu.js"></script>
 <script src="SubMenu.js"></script>
@@ -15,21 +16,40 @@
         // DOM ready
         let block = document.getElementById('menu');
 
-        let mymenu = new Menu('my', 'my', [
-            new MenuItem('/', 'Home'),
-            new MenuItem('/about', 'about'),
-            new MenuItem('/blog', 'blog'),
-            new MenuItem('/services', 'services'),
-            new SubMenu('/points', 'points', 'submenu'),
+        let mymenu = new Menu('my', 'nav', [
+            new MenuItem('1.html', 'Главная','root'),
+            new MenuItem('/about', 'О нас','root'),
+             new SubMenu('/lk', 'Личный кабинет', 'me', 'root', [
+                new MenuItem('/reg', 'Регистрация','dropdown'),
+                new MenuItem('/enter', 'Вход','dropdown'),
+            ]),
+            new MenuItem('/promo', 'Промоакции','root'),
+            new SubMenu('/catalog', 'Каталог', 'me', 'root', [
+                new MenuItem('/tubes', 'Трубы','dropdown'),
+                new MenuItem('/Phones', 'Смартфоны','dropdown'),
+                new MenuItem('/tv', 'Телевизоры','dropdown'),
+            ])
         ]);
 
         block.innerHTML = mymenu.render();
 
         document.querySelector('button').addEventListener('click', (event) => {
-            let blockToDel = document.getElementById('my');
-            mymenu.remove(blockToDel);
+            mymenu.remove();
         });
     }
+/*
+    class SubMenu extends Menu{
+        constructor(href, title, id, className, items){
+            super(id, className, items);
+            this.href = href;
+            this.title = title;
+        }
+        render(){
+            return `<li><a href="${this.href}">${this.title}</a>${super.render()}</li>`;
+        }
+    }
+*/
+
 </script>
 </body>
 </html>

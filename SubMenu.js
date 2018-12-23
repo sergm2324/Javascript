@@ -1,18 +1,11 @@
-class SubMenu extends MenuItem {
-    constructor(href, title, submenu) {
-        super(href, title);
-        this.submenu = submenu;
+class SubMenu extends Menu{
+    constructor(href, title, id, className, items){
+        super(id, className, items);
+        this.href = href;
+        this.title = title;
     }
-
-
-    render() {
-        return `<li><a href="${this.href}">${this.title}</a>
-                <ul class="${this.submenu}">
-                <li><a href="/${this.submenu}">${this.submenu}</a></li>
-                <li><a href="/${this.submenu}">${this.submenu}</a></li>
-                <li><a href="/${this.submenu}">${this.submenu}</a></li>
-                </ul>
-                </li>`
+    render(){
+        return `<li class="${this.className}"><a href="${this.href}">${this.title}</a>${super.render()}</li>`;
     }
 }
 
