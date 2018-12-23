@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="menu"></div>
+<script src="MenuItem.js"></script>
+<script src="Menu.js"></script>
+<script src="SubMenu.js"></script>
+<button type="submit" class="btn">Удалить меню</button>
+<script>
+    window.onload = () => {
+        // DOM ready
+        let block = document.getElementById('menu');
+
+        let mymenu = new Menu('my', 'my', [
+            new MenuItem('/', 'Home'),
+            new MenuItem('/about', 'about'),
+            new MenuItem('/blog', 'blog'),
+            new MenuItem('/services', 'services'),
+            new SubMenu('/points', 'points', 'submenu'),
+        ]);
+
+        block.innerHTML = mymenu.render();
+
+        document.querySelector('button').addEventListener('click', (event) => {
+            let blockToDel = document.getElementById('my');
+            mymenu.remove(blockToDel);
+        });
+    }
+</script>
+</body>
+</html>

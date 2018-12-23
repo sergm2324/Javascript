@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Расчет калорийности и стоимости гамбургера</title>
+</head>
+<body>
+<div id="menu">
+    <form class="SelectForm" method="post">
+        <h3 class="CheckSize">Выберите размер, начинку и добавку у гамбургера</h3>
+        <fieldset class="checks">
+            <label for="radio1"><input id="radio1" name="checker" data-price="100" data-count="40" type = "radio">Большой</label>
+            <label for="radio2"><input id="radio2" name="checker" data-price="50" data-count="20" type = "radio" checked>Маленький</label>
+        </fieldset>
+    </form>
+    <form class="SelectForm" method="post">
+        <fieldset class="checks">
+            <label for="radio1"><input id="radio3" name="checker" data-price="10" data-count="20" type = "radio">С сыром</label>
+            <label for="radio2"><input id="radio4" name="checker" data-price="20" data-count="5" type = "radio" checked>С салатом</label>
+            <label for="radio2"><input id="radio5" name="checker" data-price="15" data-count="10" type = "radio">С картофелем</label>
+        </fieldset>
+    </form>
+    <form class="ToppingForm" method="post">
+        <fieldset>
+            <label for = "Top1" ><input id = "Top1" data-price="15" data-count="0" type = "checkbox" >Приправа</label>
+            <label for = "Top2" ><input id = "Top2" data-price="20" data-count="5" type = "checkbox" >Майонез</label>
+        </fieldset>
+    </form>
+    <button type="submit" class="btn">Рассчитать калорийность</button>
+</div>
+<div id="basket">
+    Стоимость гамбургера: <span id="gamburger-price">0</span>
+    Калорийность: <span id="gamburger-count">0</span>
+</div>
+<script src="Gamburger.js"></script>
+
+<script>
+    window.onload = () => {
+        // DOM ready
+        let myunit = new Gamburger();
+        myunit.init();
+    }
+</script>
+</body>
+</html>
