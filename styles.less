@@ -1,0 +1,52 @@
+.menu{
+  overflow: hidden;
+}
+
+.btn {
+  display:none;
+}
+
+
+.nav {
+  display: flex;
+  padding-left:0;
+  list-style: none;
+
+  a {
+    text-decoration: none;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  ul {
+    padding-left: 0;
+  }
+
+  .me {
+    display: none;
+  }
+
+}
+
+.root {
+  list-style-type: none;
+  padding-left: 20px;
+  position: relative;
+}
+
+.root:hover {
+  .dropdown {
+    display: block;
+  }
+}
+
+.dropdown > li {
+  cursor: pointer;
+}
+
+.dropdown {
+  display: none;
+  padding-left: 10px;
+}
