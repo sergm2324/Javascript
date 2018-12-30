@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .tabs {
+            max-width: 700px;
+            margin: 0 0 30px;
+        }
+        .tabs__caption {
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            list-style: none;
+            position: relative;
+            margin: -1px 0 0 -1px;
+        }
+        .vertical .tabs__caption {
+            float: left;
+            display: block;
+        }
+        .vertical .tabs__caption li {
+            float: none;
+            border-width: 2px 0 2px 2px;
+            border-radius: 5px 0 0 5px;
+        }
+        .vertical .tabs__content {
+            overflow: hidden;
+            margin-left: 0;
+        }
+        .tabs__caption:after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+        .vertical .tabs__caption .active:after {
+            left: auto;
+            top: 0;
+            right: -2px;
+            bottom: 0;
+            width: 2px;
+            height: auto;
+        }
+        .tabs__caption .active {
+            background: #FFF;
+            color: #000;
+            border-color: #7DCA86;
+        }
+        .tabs__caption li:not(.active) {
+            cursor: pointer;
+        }
+        .tabs__caption li {
+            padding: 9px 15px;
+            margin: 1px 0 0 1px;
+            background: #61AF6A;
+            color: #FFF;
+            position: relative;
+            border: solid #61AF6A;
+            border-width: 2px 2px 0;
+            border-radius: 5px 5px 0 0;
+            text-align: center;
+        }
+        .tabs__content.active {
+            display: block; /* по умолчанию показываем нужный блок */
+        }
+
+        .tabs__caption .active:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: #FFF;
+        }
+        .tabs__content {
+            display: none;
+            margin-left: 40px;
+            background: #FFF;
+            border: 2px solid #7DCA86;
+            border-radius: 0 5px 5px 5px;
+            padding: 9px 15px;
+        }
+
+    </style>
+    <script src="./packages/jquery.min.js"></script>
+</head>
+<body>
+<div class="tabs">
+    <ul class="tabs__caption">
+        <li class="active">Первая вкладка</li>
+        <li>Вторая вкладка</li>
+        <li>Третья вкладка</li>
+        <li>Четвертая вкладка</li>
+    </ul>
+
+    <div class="tabs__content active">
+        Содержимое первого блока
+    </div>
+
+    <div class="tabs__content">
+        Содержимое второго блока
+    </div>
+
+    <div class="tabs__content">
+        Содержимое третьего блока
+    </div>
+
+    <div class="tabs__content">
+        Содержимое четвертого блока
+    </div>
+</div>
+
+<div class="tabs vertical">
+    <ul class="tabs__caption">
+        <li class="active">Первая вкладка</li>
+        <li>Вторая вкладка</li>
+        <li>Третья вкладка</li>
+        <li>Четвертая вкладка</li>
+    </ul>
+
+    <div class="tabs__content active">
+        Содержимое первого блока
+    </div>
+
+    <div class="tabs__content">
+        Содержимое второго блока
+    </div>
+
+    <div class="tabs__content">
+        Содержимое третьего блока
+    </div>
+
+    <div class="tabs__content">
+        Содержимое четвертого блока
+    </div>
+
+</div>
+
+
+<script>
+    $(document).ready(() => {
+        $('ul.tabs__caption').on('click', 'li:not(.active)',function() {  // отлавливаем клик именно на неактивном табе
+            // тут стрелочную нельзя писать из-за this
+            $(this).addClass('active'); // добавляем active кликнутому табу
+            $(this).siblings().removeClass('active'); // убираем active у соседнего таба
+            $(this).closest('div.tabs').find('div.tabs__content').removeClass('active'); // находим вышестоящий div
+            //у нашего кликнутого элемента и убираем active у всех его div
+            $(this).closest('div.tabs').find('div.tabs__content').eq($(this).index()).addClass('active'); //добавляем
+            // active по индексу кликнутого таба
+        });
+    });
+</script>
+</body>
+</html>
